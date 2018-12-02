@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+var keys =require("./keys.js")
+
 var fs = require('fs');
 
 var Spotify = require('node-spotify-api');
@@ -21,7 +23,12 @@ var songSearch = function() {
 		if (err) {
 			return console.log("Error occurred: " + err);
 		}
-		console.log(data)
+		for (var x = 0; x < data.tracks.items[0].album.artists.length; x++) {
+			console.log("Artist(s): " + data.tracks.items[0].album.artists[x].name);
+			console.log("Song: " + data.tracks.items[0].name);
+			console.log("Song Link: " + data.tracks.items[0].external_urls.spotify);
+			console.log("Album: " + data.tracks.items[0].album.name);
+		}
 	});
 };
 
@@ -50,3 +57,5 @@ var execute = function() {
 		console.log("There was an error")
 	};
 };
+
+execute();
