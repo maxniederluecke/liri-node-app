@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/maxniederluecke/liri-node-app/issues"
   },
-  "homepage": "https://github.com/maxniederluecke/liri-node-app#readme"
+  "homepage": "https://github.com/maxniederluecke/liri-node-app#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "node-spotify-api": "^1.0.7"
+  }
 }
