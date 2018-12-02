@@ -1,9 +1,7 @@
 require("dotenv").config();
-
 var keys =require("./keys.js")
-
 var fs = require('fs');
-
+var axios = require("axios");
 var Spotify = require('node-spotify-api');
 
 var spotify = new Spotify(keys.spotify);
@@ -12,9 +10,11 @@ var searchTyoe = process.argv[2];
 var searchInput = process.argv[3];
 
 var eventSearch = function() {
-	axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
+	axios.get("https://rest.bandsintown.com/artists/" + searchInput + "/events?app_id=codingbootcamp")
 	.then(function(response) {
-		console.log(response)
+		console.log("Venue: " + response.venue.name);
+		console.log("Location: " + response.venue.city);
+		console.log("Event Date: " + response.datetime);
 	})
 };
 
@@ -35,7 +35,14 @@ var songSearch = function() {
 var movieSearch = function() {
 	axios.get("http://www.omdbapi.com/?apikey=trilogy&t=" + searchInput)
 	.then(function(response) {
-		console.log(response);
+		console.log("Title: " + response.data.Title);
+		console.log("Year: " + response.data.Year);
+		console.log("Rated: " + response.data.Rated);
+		console.log("Rotten Tomatoes: " + response.data.Ratings.Value);
+		console.log("Country: " + response.data.Country);
+		console.log("Language: " + response.data.Language);
+		console.log("Plot: " + response.data.Plot);
+		console.log("Actors: " + response.data.Actors);
 	});
 };
 
